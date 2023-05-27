@@ -49,9 +49,6 @@ function App() {
         // Render UserView and pass the handleAddForm callback
         <UserView addFormArray={(newForms) => handleAddForm(newForms)} />
       )}
-      <footer className="footer-section">
-        <p>@2023 Ju Li Chow LLC</p>
-      </footer>
     </div>
   );
 };
