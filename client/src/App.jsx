@@ -28,15 +28,13 @@ function App() {
           {/* Selecting admin view tab */}
           <button
             className={`admin-button${isAdmin ? ' active' : ''}`}
-            onClick={() => handleChangeView(true)}
-          >
+            onClick={() => handleChangeView(true)}>
             ADMIN
           </button>
           {/* Selecting user view tab */}
           <button
             className={`user-button${!isAdmin ? ' active' : ''}`}
-            onClick={() => handleChangeView(false)}
-          >
+            onClick={() => handleChangeView(false)}>
             USER
           </button>
         </div>
