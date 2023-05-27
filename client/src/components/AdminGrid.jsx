@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 //receive formArray prop from UserView
-function AdminGrid() {
+function AdminGrid({search, query}) {
   const [employees, setEmployees] = useState([]);
+  // const [query, setQuery] = useState("");
+    
+  const employeeFilter = search(employees, query);
 
   useEffect(() => {
     // get the list of employees every time the webpage is loaded
@@ -20,8 +23,6 @@ function AdminGrid() {
       const newEmployees = await response.json();
       //fetched employees data will be stored in employees useState using setEmployees 
       setEmployees(newEmployees);
-      //for troubleshooting
-      console.log(newEmployees)
     } catch (error) {
       console.log(error);
     }
@@ -38,12 +39,22 @@ function AdminGrid() {
       });
     };
 
+  // const search = (employees, query) => {
+  //   if (!query) {
+  //     return employees;
+  //   }
+  //   return employees.filter((employee) => employee.fullName.toLowerCase().includes(query));
+  // }
+
+
   return (
     <div> 
+       {/* <input type="text"
+        onChange={(e) => setQuery(e.target.value)} /> */}
     <div className="container-fluid">
       <h3 className="text-dark mt-4 mb-4" style={{ fontFamily: 'sans-serif' }}>List of Ezform employeesGRID</h3>
       <div className="row">
-        {employees.map((employee) => {
+          {employeeFilter.map((employee) => {
           const formattedStartDate = new Date(employee.startDate).toLocaleDateString('en-US');
           const formattedBirthDate = new Date(employee.birthDate).toLocaleDateString('en-US');
           
@@ -81,8 +92,9 @@ function AdminGrid() {
           );
         })}
       </div>
-      </div>
-      </div>
+        </div>
+    </div>
+    
   );
 }
 

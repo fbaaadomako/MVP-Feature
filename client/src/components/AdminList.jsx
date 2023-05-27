@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-// //receive employeesList prop from UserView
-function AdminList() {
+//receive employeesList prop from UserView
+//Pass search and query from searchbox in AdminView
+function AdminList({search, query}) {
   const [employees, setEmployees] = useState([]);
+
+  const employeeFilter = search(employees, query);
+  //TO SEARCH BY DEPARTMENT
 //state variable for department
   //state variable for each search input
   
@@ -11,7 +15,7 @@ function AdminList() {
     getEmployees();
   }, []);
 
-  //   //fetching list of employees from the servier
+  //   //fetching list of employees from the server
   const getEmployees = async () => {
     let options = {
       method: "GET",
@@ -22,13 +26,12 @@ function AdminList() {
         const newEmployees = await response.json();
         //fetched employees data will be stored in employees useState using setEmployees 
         setEmployees(newEmployees);
-      //for troubleshooting
-      console.log(newEmployees)
       } catch(error) {
         console.log(error);
       }
   };
   
+
   //Delete employee fromm listview
   const deleteEmployee = (id) => {
     fetch(`http://localhost:4000/api/employees/${id}`, {
@@ -49,7 +52,7 @@ function AdminList() {
             {/* employees.filter(employee => employee.department === variable for each department link) FILTER WILL NEED A CONDITION */}
     {/* SEARCH FEATURE - can use filter to search by name === to search input that's already stored in a variable */}
             {/* {employees.filter(employee => employee.department === "Marketing") */}
-              {employees.map((employee) => {
+              {employeeFilter.map((employee) => {
               const formattedStartDate = new Date(employee.startDate).toLocaleDateString('en-US');
               const formattedBirthDate = new Date(employee.birthDate).toLocaleDateString('en-US');
           

@@ -42,7 +42,7 @@ function App() {
       <hr className="line" />
       {isAdmin ? (
         // Render AdminView and pass the formArray
-        <AdminView formArray={forms} />
+        <AdminView />
       ) : (
         // Render UserView and pass the handleAddForm callback
         <UserView addFormArray={(newForms) => handleAddForm(newForms)} />
