@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-//receive formArray prop from UserView
-function AdminGrid({search, query}) {
+function AdminGrid() {
   const [employees, setEmployees] = useState([]);
     
   const employeeFilter = search(employees, query);

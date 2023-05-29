@@ -6,32 +6,27 @@ function AdminView() {
   const [view, setView] = useState([]);
   const [query, setQuery] = useState("");
   const [employees, setEmployees] = useState([]);
-  const [filteredDept, setFilteredDept] = useState([]);
-  const [searchParam] = useState(employees, query)
   const [department, setDepartment] = useState("");
-  // const departmentFilter = employees.filter(employee => employee.department === e.target.value)
 
 useEffect(() => { //getting employees every time page is loaded
     getEmployees();
   }, []);
 
+//Fetch all employees
   const getEmployees = async () => {
     let options = {
       method: "GET",
     };
-  
     try {
       const response = await fetch("/api/employees", options);
       const newEmployees = await response.json();
       setEmployees(newEmployees);
-      setFilteredDept(newEmployees);
     } catch (error) {
       console.log(error);
     }
   };
   
-
-  //Delete employee fromm listview
+  //Delete employee from listview
   const deleteEmployee = (id) => {
     fetch(`http://localhost:4000/api/employees/${id}`, {
       method: "DELETE",
@@ -43,54 +38,34 @@ useEffect(() => { //getting employees every time page is loaded
       });
   };
 
-
+  //Toggle between Grid and List Views
   const toggleView = React.useCallback(() => {
     setView(!view);
   }, [view, setView]);
 
-
-  //Filter employees by department
-  const filterByDepartment = (department) => {
-         const filtered = employees.filter((employee) => {
-          return employee.department === department
-        });
-        setFilteredDept(filtered);
-      }
- 
-  //Search employees
-      const search = (employeeNames) => {
-        return employeeNames.filter((employee) => employee.fullName.toLowerCase().includes(query));
-      }
-
-
-    return (
+  return (
+    <div>
       <div>
         <h1>Departments</h1>
-        <div>
-          <button onClick={() => filterByDepartment("IT")}>IT</button>
-          <button onClick={() => getEmployees()} >All</button>
-          <button onClick={() => filterByDepartment("Marketing")}>Marketing</button>
+        <button onClick={() => setDepartment("Marketing")}>Marketing</button>
+        <button onClick={() => setDepartment("Automation")}>Automation</button>
+        <button onClick={() => setDepartment("IT")}>IT</button>
+        <button onClick={() => setDepartment("Finance")}>Finance</button>
+        <button onClick={() => setDepartment("Investment")}>Investment</button>
+        <button onClick={() => setDepartment("Design")}>Design</button>
+        <button onClick={() => setDepartment("")} >All Departments</button>
         </div>
         <input type="text" value={query}
           onChange={(e) => setQuery(e.target.value)} />
       
         <button onClick={toggleView} >Toggle!</button>
         {view ?
-          <AdminList employees={employees}
-            // data={sf()}
-            employeeNames={search(employees)}
-            // search={search} query={query}
-            filteredDept={filteredDept}
-          // filterByDepartment={filterByDepartment}
-            
-            // filterByDept={filterByDept}
-          
-            // department={department}
-          />
-          : <AdminGrid search={search} query={query} />}
+        <AdminList employees={employees
+          .filter((employee) => employee.fullName.toLowerCase().includes(query))
+          .filter((employee) => employee.department.includes(department))}/>
+          : <AdminGrid  />}
       </div>
     );
   }
-
 
 export default AdminView;
