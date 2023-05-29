@@ -2,48 +2,48 @@ import React, { useState, useEffect } from 'react';
 import AdminView from "./AdminView";
 import EmployeeDetail from "./EmployeeDetail";
 
-function AdminList({ search, query, filterByDept}) {
-  const [employees, setEmployees] = useState([]);
-  const employeeFilter = search(employees, query);
+function AdminList({ search, query, employees, employeeNames, filteredDept, filterByDepartment, department, data}) {
+  // const employeeFilter = search(employees, query);
+  // const filteredDept = search(employees, query);
   const [openDetail, setOpenDetail] = useState(false)
   // const departmentFilter = filterByDept();
   // employeeFilter = departmentFilter;
 
+
   // const [department, setDepartment] = useState('All', ...employees.filter(employee => employee.department))
   
+  //MOVE employee states and fetch code to Adminview and pass down as props
 
-  useEffect(() => {
-    //     // get the list of employees every time the webpage is loaded
-    getEmployees();
-  }, []);
+  // useEffect(() => { //getting employees every time page is loaded
+  //   getEmployees();
+  // }, []);
 
-  //   //fetching list of employees from the server
-  const getEmployees = async () => {
-    let options = {
-      method: "GET",
-    };
+  // const getEmployees = async () => {
+  //   let options = {
+  //     method: "GET",
+  //   };
   
-    try {
-      const response = await fetch("/api/employees", options);
-      const newEmployees = await response.json();
-      setEmployees(newEmployees);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //   try {
+  //     const response = await fetch("/api/employees", options);
+  //     const newEmployees = await response.json();
+  //     setEmployees(newEmployees);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   
 
-  //Delete employee fromm listview
-  const deleteEmployee = (id) => {
-    fetch(`http://localhost:4000/api/employees/${id}`, {
-      method: "DELETE",
-    })
-      .then(response => response.json())
-      .then(employees => setEmployees(employees))
-      .catch(error => {
-        console.log(error);
-      });
-  };
+  // //Delete employee fromm listview
+  // const deleteEmployee = (id) => {
+  //   fetch(`http://localhost:4000/api/employees/${id}`, {
+  //     method: "DELETE",
+  //   })
+  //     .then(response => response.json())
+  //     .then(employees => setEmployees(employees))
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // };
 
   
 
@@ -62,34 +62,38 @@ function AdminList({ search, query, filterByDept}) {
   // };
   
   
-  // const filterByDept = (e) => {
-  //   if (e.target.value === 'All') {
-  //     getEmployees()
-  //   } const departmentFilter = employees.filter(employee => employee.department === e.target.value)
-  //   setEmployees(departmentFilter)
-  // };
+//for FIlTER
 
-  const employeeDetail = (openDetail) => {
-    setOpenDetail(openDetail);
-    window.open( url, '_blank', 'noreferrer');
-    };  
+  // const employeeDetail = (openDetail) => {
+  //   setOpenDetail(openDetail);
+   
+  //   };  
+
+  // if (employeeDetail === true) {
+  //   return
+  //   <Navigate to="/employees/{d"
+  // }
+  
+  // const employeeDetail = (id) => {
+  //   setOpenDetail(!openDetail);
+  //   setEmployee(id)
+  //   };  
    
   
   return (
     <div>
-     {/* <button value="Marketing" onClick={(e) => setEmployees(e.target.value)}>Marketing</button> */}
         
       <div className="container-fluid">
         <h3 className="text-dark mt-4 mb-4" style={{ fontFamily: 'sans-serif' }}>List of Ezform employees as a LIST</h3>
         <div className="row">
-          {employeeFilter.map((employee) => {
+          {filteredDept // or employeeNames can be mapped here. Can't figure out how to join the two
+            .map((employee) => {
             const formattedStartDate = new Date(employee.startDate).toLocaleDateString('en-US');
             const formattedBirthDate = new Date(employee.birthDate).toLocaleDateString('en-US');
           
             return (
               <div className="col-lg-2 col-md-4 col-sm-6 mb-4" key={employee.id}>
-                <div className="card">
-                  {/* Display image source */}
+                <div className="card" key={employee.employeeId}>
                   <div className="card-image">
                     <img
                       src={employee.url ? employee.url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSGzFXWLmEJOIJINzoqCxDsQ5UvK2CSq7KRsT0K3fX6qlSxfFPy2Yf1OI48nFWtECrJbM&usqp=CAU"}
@@ -115,7 +119,7 @@ function AdminList({ search, query, filterByDept}) {
                     </div>
                   </div>
                   <button role="link" onClick={() => employeeDetail(true)}>Open</button>
-                  {openDetail ? (<EmployeeDetail />) : null}
+                  {openDetail ? (<EmployeeDetail employee={employee} />) : null}
                   <button type="submit" className="peach-button" onClick={() => deleteEmployee(employee.employeeId)}>Delete</button>
                 </div>
               </div>

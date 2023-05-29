@@ -5,54 +5,88 @@ import AdminGrid from "./AdminGrid";
 function AdminView() {
   const [view, setView] = useState([]);
   const [query, setQuery] = useState("");
-  // const [department, setDepartment] = useState('All', ...employees.filter(employee => employee.department))
+  const [employees, setEmployees] = useState([]);
+  const [filteredDept, setFilteredDept] = useState([]);
+  const [searchParam] = useState(employees, query)
+  const [department, setDepartment] = useState("");
   // const departmentFilter = employees.filter(employee => employee.department === e.target.value)
 
+useEffect(() => { //getting employees every time page is loaded
+    getEmployees();
+  }, []);
 
+  const getEmployees = async () => {
+    let options = {
+      method: "GET",
+    };
+  
+    try {
+      const response = await fetch("/api/employees", options);
+      const newEmployees = await response.json();
+      setEmployees(newEmployees);
+      setFilteredDept(newEmployees);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
 
-  //TO SEARCH BY DEPARTMENT
-  //state variable for department
+  //Delete employee fromm listview
+  const deleteEmployee = (id) => {
+    fetch(`http://localhost:4000/api/employees/${id}`, {
+      method: "DELETE",
+    })
+      .then(response => response.json())
+      .then(employees => setEmployees(employees))
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
-  {/* employees.filter(employee => employee.department === variable for each department link) FILTER WILL NEED A CONDITION */ }
-  {/* SEARCH FEATURE - can use filter to search by name === to search input that's already stored in a variable */ }
-  {/* {employees.filter(employee => employee.department === "Marketing") */ }
 
   const toggleView = React.useCallback(() => {
     setView(!view);
   }, [view, setView]);
 
-  //Search employees by name
-  const search = (employees, query) => {
-    if (!query) {
-      return employees;
-    }
-    return employees.filter((employee) => employee.fullName.toLowerCase().includes(query));
-  };
 
-  //Filter employes by department
-  const filterByDept = (e) => {
-    console.log(e.target.value)
-      if (e.target.value === 'All') {
-        return employees;
-        }
-    //     return employees.filter(employee => employee.department === e.target.value)
-    };
+  //Filter employees by department
+  const filterByDepartment = (department) => {
+         const filtered = employees.filter((employee) => {
+          return employee.department === department
+        });
+        setFilteredDept(filtered);
+      }
+ 
+  //Search employees
+      const search = (employeeNames) => {
+        return employeeNames.filter((employee) => employee.fullName.toLowerCase().includes(query));
+      }
 
 
     return (
       <div>
         <h1>Departments</h1>
         <div>
-          <button value="IT" onClick={filterByDept}>IT</button>
-          <button value="All" onClick={filterByDept} >All</button>
+          <button onClick={() => filterByDepartment("IT")}>IT</button>
+          <button onClick={() => getEmployees()} >All</button>
+          <button onClick={() => filterByDepartment("Marketing")}>Marketing</button>
         </div>
-        <input type="text"
+        <input type="text" value={query}
           onChange={(e) => setQuery(e.target.value)} />
       
         <button onClick={toggleView} >Toggle!</button>
         {view ?
-          <AdminList search={search} query={query}
-            filterByDept={filterByDept}  />
+          <AdminList employees={employees}
+            // data={sf()}
+            employeeNames={search(employees)}
+            // search={search} query={query}
+            filteredDept={filteredDept}
+          // filterByDepartment={filterByDepartment}
+            
+            // filterByDept={filterByDept}
+          
+            // department={department}
+          />
           : <AdminGrid search={search} query={query} />}
       </div>
     );
