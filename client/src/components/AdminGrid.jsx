@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function AdminGrid({employees}) {
+function AdminGrid({employees, deleteEmployee}) {
 
   return (
     <div> 

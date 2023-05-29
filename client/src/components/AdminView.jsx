@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import AdminList from "./AdminList";
 import AdminGrid from "./AdminGrid";
+import EmployeeDetail from "./EmployeeDetail";
 
 function AdminView() {
   const [view, setView] = useState([]);
   const [query, setQuery] = useState("");
   const [employees, setEmployees] = useState([]);
   const [department, setDepartment] = useState("");
+  const [detail, setDetail] = useState([])
+  const [openDetail, setOpenDetail] = useState("");
 
-useEffect(() => { //getting employees every time page is loaded
+
+  useEffect(() => { //getting employees every time page is loaded
     getEmployees();
   }, []);
 
-//Fetch all employees
+  //Fetch all employees
   const getEmployees = async () => {
     let options = {
       method: "GET",
@@ -43,6 +47,13 @@ useEffect(() => { //getting employees every time page is loaded
     setView(!view);
   }, [view, setView]);
 
+//Open detailed view
+  const employeeDetail = () => {
+    employees.filter((employee) => setOpenDetail(employee.employeeId) )
+   
+  };
+   
+
   return (
     <div>
       <div>
@@ -62,11 +73,20 @@ useEffect(() => { //getting employees every time page is loaded
         {view ?
         <AdminList employees={employees
           .filter((employee) => employee.fullName.toLowerCase().includes(query))
-          .filter((employee) => employee.department.includes(department))}/>
-        : <AdminGrid employees={employees
+          .filter((employee) => employee.department.includes(department))}
+          deleteEmployee={deleteEmployee}
+          employeeDetail={employeeDetail}
+          openDetail={openDetail}
+        />
+        :
+        <AdminGrid employees={employees
           .filter((employee) => employee.fullName.toLowerCase().includes(query))
           .filter((employee) => employee.department.includes(department))}
+          deleteEmployee={deleteEmployee}
+          employeeDetail={employeeDetail}
+          // openDetail={openDetail}
         />}
+
       </div>
     );
   }

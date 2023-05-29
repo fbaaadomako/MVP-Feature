@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import EmployeeDetail from "./EmployeeDetail";
+// import { Link } from "react-router-dom";
 
-function AdminList({ employees}) {
+function AdminList({ employees, deleteEmployee, employeeDetail, openDetail}) {
+  // const [openDetail, setOpenDetail] = useState("")
   
   return (
     <div>   
@@ -41,9 +43,10 @@ function AdminList({ employees}) {
                       <p className="card-text">Employee Start Date: {formattedStartDate}</p>
                     </div>
                   </div>
-                  {/* <button role="link" onClick={() => employeeDetail(true)}>Open</button>
+          
+                  <button onClick={() => employeeDetail()}>Open {employee.employeeId}</button>
                   {openDetail ? (<EmployeeDetail employee={employee} />) : null}
-                  <button type="submit" className="peach-button" onClick={() => deleteEmployee(employee.employeeId)}>Delete</button> */}
+                  <button type="submit" className="peach-button" onClick={() => deleteEmployee(employee.employeeId)}>Delete</button>
                 </div>
               </div>
             );
