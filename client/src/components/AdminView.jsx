@@ -63,7 +63,10 @@ useEffect(() => { //getting employees every time page is loaded
         <AdminList employees={employees
           .filter((employee) => employee.fullName.toLowerCase().includes(query))
           .filter((employee) => employee.department.includes(department))}/>
-          : <AdminGrid  />}
+        : <AdminGrid employees={employees
+          .filter((employee) => employee.fullName.toLowerCase().includes(query))
+          .filter((employee) => employee.department.includes(department))}
+        />}
       </div>
     );
   }

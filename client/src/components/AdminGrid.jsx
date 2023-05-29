@@ -1,49 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-function AdminGrid() {
-  const [employees, setEmployees] = useState([]);
-    
-  const employeeFilter = search(employees, query);
-
-  useEffect(() => {
-    // get the list of employees every time the webpage is loaded
-    getEmployees();
-  }, []);
-
-  //fetching list of employees from the server
-  const getEmployees = async () => {
-    let options = {
-      method: "GET",
-    };
-  
-    try {
-      const response = await fetch("/api/employees", options);
-      const newEmployees = await response.json();
-      //fetched employees data will be stored in employees useState using setEmployees 
-      setEmployees(newEmployees);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const deleteEmployee = (id) => {
-    fetch(`http://localhost:4000/api/employees/${id}`, {
-      method: "DELETE",
-    })
-      .then(response => response.json())
-      .then(employees => setEmployees(employees))
-      .catch(error => {
-        console.log(error);
-      });
-    };
-
+function AdminGrid({employees}) {
 
   return (
     <div> 
     <div className="container-fluid">
       <h3 className="text-dark mt-4 mb-4" style={{ fontFamily: 'sans-serif' }}>List of Ezform employeesGRID</h3>
       <div className="row">
-          {employeeFilter.map((employee) => {
+          {employees.map((employee) => {
           const formattedStartDate = new Date(employee.startDate).toLocaleDateString('en-US');
           const formattedBirthDate = new Date(employee.birthDate).toLocaleDateString('en-US');
           
