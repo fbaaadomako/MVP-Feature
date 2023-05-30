@@ -269,7 +269,7 @@ function UserView({ addFormArray }) {
             />
           </div>
         </div>
-
+        <hr className="line" />
         <div className="button">
           <button type="submit" className="peach-button">Save</button>
         </div>

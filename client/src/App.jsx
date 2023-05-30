@@ -1,52 +1,50 @@
 import { useState } from 'react'
 import './App.css'
-//1. import User View component
 import UserView from "./components/UserView";
-//1. import Admin View component 
 import AdminView from "./components/AdminView";
+import icon from "./assets/icon.png"
+import menu from "./assets/menu-burger.png"
 
-//always have function & to export as well 
 function App() {
   const [isAdmin, setIsAdmin] = useState(true);
   const [forms, setForms] = useState([]);
 
-  //handleAddForm is called when a form is submitted in the UserView component
   const handleAddForm = (newForms) => {
-//updates the new form to the existing array of forms 
     setForms((state) => [...state, newForms]);
   };
-
   const handleChangeView = (isAdmin) => {
     setIsAdmin(isAdmin);
   };  
 
   return (
-    <div className="app-container">
-      <header className="title-section">
-        <h1 className="title">EZFORM & CO.</h1>
-        <div className="button-container">
-          {/* Selecting admin view tab */}
-          <button
-            className={`admin-button${isAdmin ? ' active' : ''}`}
-            onClick={() => handleChangeView(true)}>
-            ADMIN
-          </button>
-          {/* Selecting user view tab */}
-          <button
-            className={`user-button${!isAdmin ? ' active' : ''}`}
-            onClick={() => handleChangeView(false)}>
-            USER
-          </button>
+    <div>
+      <div className="container position-relative">
+      {/* Nav Bar */}
+      <nav className="navbar navbar-dark fixed-top bg-dark">
+        {/* Dropdown menu in navbar */}
+      <div class="dropdown">
+        <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src={menu} class="icon" /></button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <button className={`dropdown-item ${isAdmin}`}
+                  onClick={() => handleChangeView(true)}>Employees</button>
+          <button className={`dropdown-item  ${!isAdmin}`}
+                  onClick={() => handleChangeView(false)}>Add Employee</button>
+     </div>
         </div>
-      </header>
-      <hr className="line" />
-      {isAdmin ? (
-        // Render AdminView and pass the formArray
-        <AdminView />
-      ) : (
-        // Render UserView and pass the handleAddForm callback
-        <UserView addFormArray={(newForms) => handleAddForm(newForms)} />
-      )}
+        {/* Logo */}
+        <div className="ml-auto">
+          <a className="navbar-brand px-4 text-light font-weight-bold">
+            EZ<img src={icon} class="icon" />Form </a></div>
+</nav>
+      </div>
+      <div className="container position-relative my-5">
+    
+        {isAdmin ? (<AdminView />) :
+          (<UserView addFormArray={(
+            newForms) => handleAddForm(newForms)} />
+        )}
+        </div> 
     </div>
   );
 };

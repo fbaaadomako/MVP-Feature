@@ -1,16 +1,20 @@
 /*ADMIN VIEW*/
-
-/* Whole website background to light grey */
-.bg-light-grey {
-  background-color: #F4F1EA;
-}
-
 body {
-  background-color: #F4F1EA;
+  background-color: #f4f1ea;
 }
 
 .card-image {
   position: relative;
+}
+
+.icon {
+  height: 1em;
+  margin: 0.2em;
+}
+
+.icontext {
+  float: right;
+  text-align: right;
 }
 
 .card-image__img {
@@ -32,7 +36,7 @@ body {
 
 /*USER VIEW*/
 .container {
-  background: #F0F0F0;
+  background: #f0f0f0;
   padding: 10px;
   margin-bottom: 20px;
 }
@@ -59,7 +63,7 @@ body {
 
 .peach-button {
   border-radius: 12px;
-  background-color: #FFCBA4; /* Peach color */
+  background-color: #ffcba4; /* Peach color */
   color: #000000; /* Black color for text */
   border: none;
   padding: 10px 20px;
@@ -77,20 +81,15 @@ body {
 }
 
 .peach-button:hover {
-  background-color: #FFA87D; /* Lighter shade of peach on hover */
+  background-color: #ffa87d; /* Lighter shade of peach on hover */
 }
 
 .peach-button:hover::before {
   opacity: 1;
 }
-/* App.jsx */
-.app-container {
-  text-align: center;
-  padding: 20px;
-}
 
 .title-section {
-  background-color: #F4F1EA; /* Quicksand color */
+  background-color: #f4f1ea; /* Quicksand color */
   padding: 10px;
   margin-bottom: 20px;
   display: flex;
@@ -112,28 +111,11 @@ body {
 }
 
 .footer-section {
-  background-color: #F4F1EA; /* Quicksand color */
+  background-color: #f4f1ea; /* Quicksand color */
   padding: 20px;
   text-align: center;
 }
 
 .button-container {
   display: flex;
-}
-
-/* Button Styles */
-.admin-button,
-.user-button {
-  background-color: white;
-  border: 1px solid white;
-  border-radius: 12px;
-  color: black;
-  padding: 8px 16px;
-  transition: background-color 0.3s ease;
-}
-
-.admin-button:hover,
-.user-button:hover {
-  background-color: #887878;
-  color: white;
 }
