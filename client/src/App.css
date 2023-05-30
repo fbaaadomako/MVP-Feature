@@ -1,12 +1,35 @@
-/*ADMIN VIEW*/
-body {
-  background-color: #f4f1ea;
-}
+/* ALL */
 
 .container {
   background: #f4f1ea;
   padding: 10px;
   margin-bottom: 20px;
+}
+
+hr {
+  border-radius: 3px;
+  border-top: 1px solid rgb(75, 75, 75);
+  margin: 0;
+}
+
+h3 {
+  margin: 12px 0;
+  color: #8f8f8f;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+h5 {
+  margin: 12px 0;
+  color: #30a89e;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+body {
+  background-color: #f4f1ea;
 }
 
 /* NAV BAR */
@@ -25,15 +48,7 @@ body {
   background-color: #fff;
 }
 
-h5 {
-  margin: 12px 0;
-  color: #30a89e;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.9em;
-}
-
-.label {
+label {
   display: block;
   margin: 10px 0 5px 0;
 }
@@ -46,6 +61,72 @@ h5 {
 }
 
 /* ADMIN VIEW */
+.dept-container {
+  float: left;
+  width: 250px;
+  height: 100%;
+  padding: 90px 60px 60px 40px;
+}
+
+.admin-view-container {
+  margin-top: 30px;
+}
+
+ul {
+  text-indent: 0;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  line-height: 35px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+li:hover {
+  background-color: #ece1db;
+}
+
+.toggle-link {
+  display: flex;
+  justify-content: end;
+  /* float: right; */
+  text-decoration: underline;
+}
+
+.toggle-icon {
+  padding: 5px;
+  height: 2em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-icon:hover {
+  background-color: #969696;
+}
+
+/* ALL EMPLOYEE CARDS ON ADMNIN VIEW */
+.search-input {
+  width: 30%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input::placeholder {
+  opacity: 0.3;
+  color: #000000;
+}
+
+.cards-container {
+  padding: 50px 30px 70px 30px;
+  overflow: hidden;
+  background-color: rgb(218, 218, 218);
+}
+
 .card-image {
   position: relative;
 }
@@ -112,18 +193,22 @@ h5 {
   font-weight: bold;
 }
 
-.line {
-  border: none;
-  border-top: 1px solid black;
-  margin: 0;
-}
-
-.footer-section {
-  background-color: #f4f1ea; /* Quicksand color */
-  padding: 20px;
-  text-align: center;
-}
-
-.button-container {
-  display: flex;
+/* RESPONSIVE ELEMENTS */
+@media screen and (max-width: 800px) {
+  /* input[type="submit"] {
+    width: 100%;
+    margin-top: 0;
+  } */
+  .dept-container {
+    width: 220px;
+  }
+  .search-input {
+    width: 100%;
+  }
+  /* h2 {
+    font-size: 1em;
+  }
+  .card p {
+    font-size: 0.8em;
+  } */
 }

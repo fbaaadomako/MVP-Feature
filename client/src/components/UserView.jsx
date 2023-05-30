@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Alert } from 'react-alert'
 
 //declare UserView function that accepts a prop call "addFormArray"
 function UserView({ addFormArray, changeView }) {
@@ -140,7 +139,7 @@ function UserView({ addFormArray, changeView }) {
     //   }) {
     //   window.alert("Please enter all fields")
     // } else {
-    // changeView(true)
+    changeView(true)
     // }
 
   };
@@ -150,10 +149,10 @@ function UserView({ addFormArray, changeView }) {
       <form onSubmit={handleSubmit}>
         <div className="container">
         <div className="form-container">
-          <h3 className="form-heading mt-4">New Employee Details</h3>
-            <hr className="line mt-4" />
+          <h2 className="mt-4">New Employee Details</h2>
+            <hr className="mt-4" />
             <h5>Demographic Information:</h5>
-            <hr className="line mb-4" />
+            <hr className="mb-4" />
 
             <div className="mt-3">
               <div className="row">
@@ -168,7 +167,7 @@ function UserView({ addFormArray, changeView }) {
             />
           </div>
                 <div className="col-md-4">
-            <label className="label">Full Name:*</label>
+            <label>Full Name:*</label>
             <input
               className="input"
               type="text"
@@ -178,7 +177,7 @@ function UserView({ addFormArray, changeView }) {
                   />
                 </div> 
                 <div className="col-md-4">
-                <label className="label">Birth Date:*</label>
+                <label>Birth Date:*</label>
             <input
               className="input"
               type="date"
@@ -189,7 +188,7 @@ function UserView({ addFormArray, changeView }) {
             /></div>
               </div>
               
-            <label className="label">Address:</label>
+            <label>Address:</label>
             <input
               className="input"
               type="text"
@@ -200,7 +199,7 @@ function UserView({ addFormArray, changeView }) {
           {/* </div> */}
               <div className="row">
                 <div className="col-md-6">
-            <label className="label">Country:*</label>
+            <label>Country:*</label>
             <input
               className="input"
               type="text"
@@ -210,7 +209,7 @@ function UserView({ addFormArray, changeView }) {
             />
                 </div>
                 <div className="col-md-6">
-            <label className="label">Passport Number:</label>
+            <label>Passport Number:</label>
             <input
               className="input"
               type="text"
@@ -222,7 +221,7 @@ function UserView({ addFormArray, changeView }) {
         </div>
               <div className="row">
                 <div className="col-md-6">
-            <label className="label">Phone Number:*</label>
+            <label>Phone Number:*</label>
             <input
               className="input"
               type="text"
@@ -231,7 +230,7 @@ function UserView({ addFormArray, changeView }) {
               onChange={handleInputChange}
             /> </div>
               <div className="col-md-6">
-            <label className="label">Email Address:*</label>
+            <label>Email Address:*</label>
             <input
               className="input"
               type="email"
@@ -242,13 +241,13 @@ function UserView({ addFormArray, changeView }) {
                 </div>
                 </div>
          
-        <hr className="line mt-4" />
+        <hr className="mt-4" />
             <h5>Work Information:</h5>
-              <hr className="line md-4" />
+              <hr className="md-4" />
               
               <div className="row">
                 <div className="col-md-4">
-            <label className="label">Start Date:*</label>
+            <label>Start Date:*</label>
             <input
               className="input"
               type="date"
@@ -258,7 +257,7 @@ function UserView({ addFormArray, changeView }) {
               onChange={handleInputChange}
             /></div>
                  <div className="col-md-4">
-            <label className="label">EPF Number:</label>
+            <label>EPF Number:</label>
             <input
               className="input"
               type="text"
@@ -268,7 +267,7 @@ function UserView({ addFormArray, changeView }) {
             />
          </div>
           <div className="col-md-4">
-            <label className="label">SOCSO:</label>
+            <label>SOCSO:</label>
             <input
               className="input"
               type="text"
@@ -280,7 +279,7 @@ function UserView({ addFormArray, changeView }) {
               </div>
               <div className="row">
                 <div className="col-md-6">
-               <label className="label">Department:*</label>
+               <label>Department:*</label>
             <input
               className="input"
               type="text"
@@ -290,7 +289,7 @@ function UserView({ addFormArray, changeView }) {
                   />
                   </div>
           <div className="col-md-6">
-            <label className="label">Please share URL copy of your passport photo:</label>
+            <label>Please share URL copy of your passport photo:</label>
             <input
               className="input"
               type="text"

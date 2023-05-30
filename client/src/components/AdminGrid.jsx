@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import gridimg from "../assets/apps.png"
+import listimg from "../assets/table-list.png"
 
-function AdminGrid({employees, deleteEmployee}) {
+function AdminGrid({ employees, toggleView, deleteEmployee }) {
 
   return (
     <div> 
+        <div className="toggle-link">
+      <img src={listimg} title="Change view"  onClick={toggleView} />
+      <img src={gridimg} title="Change view" /></div>
+    
+          
     <div className="container-fluid">
       <h3 className="text-dark mt-4 mb-4" style={{ fontFamily: 'sans-serif' }}>List of Ezform employeesGRID</h3>
       <div className="row">

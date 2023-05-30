@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import gridimg from "../assets/apps.png"
+import listimg from "../assets/table-list.png"
 import EmployeeDetail from "./EmployeeDetail";
-// import { Link } from "react-router-dom";
 
-function AdminList({ employees, deleteEmployee, employeeDetail, openDetail}) {
+function AdminList({ employees, toggleView, deleteEmployee, employeeDetail, openDetail}) {
   // const [openDetail, setOpenDetail] = useState("")
   
   return (
     <div>   
-      <div className="container-fluid">
+      
+      <div className="container-fluid mt-2">
+      <div className="toggle-link">
+         <img className="toggle-icon" title="Change view" src={listimg}  />
+      <img className="toggle-icon" title="Change view"  src={gridimg}   onClick={toggleView} />
+          </div>
         <h3 className="text-dark mt-4 mb-4" style={{ fontFamily: 'sans-serif' }}>List of Ezform employees as a LIST</h3>
         <div className="row">
           {employees 
