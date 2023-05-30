@@ -22,10 +22,10 @@ function App() {
       {/* Nav Bar */}
       <nav className="navbar navbar-dark fixed-top bg-dark">
         {/* Dropdown menu in navbar */}
-      <div class="dropdown">
-        <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img src={menu} class="icon" /></button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div className="dropdown">
+        <button className="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src={menu} className="icon" /></button>
+      <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <button className={`dropdown-item ${isAdmin}`}
                   onClick={() => handleChangeView(true)}>Employees</button>
           <button className={`dropdown-item  ${!isAdmin}`}
@@ -41,8 +41,9 @@ function App() {
       <div className="container position-relative my-5">
     
         {isAdmin ? (<AdminView />) :
-          (<UserView addFormArray={(
-            newForms) => handleAddForm(newForms)} />
+          (<UserView
+            addFormArray={(newForms) => handleAddForm(newForms)}
+            changeView={(isAdmin) => handleChangeView(isAdmin)} />
         )}
         </div> 
     </div>

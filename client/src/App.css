@@ -3,18 +3,51 @@ body {
   background-color: #f4f1ea;
 }
 
-.card-image {
-  position: relative;
+.container {
+  background: #f4f1ea;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
+/* NAV BAR */
 .icon {
   height: 1em;
   margin: 0.2em;
 }
 
-.icontext {
-  float: right;
-  text-align: right;
+/* USER VIEW */
+.form-container {
+  margin-top: 10px;
+  /* width: 30rem; */
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+h5 {
+  margin: 12px 0;
+  color: #30a89e;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+.label {
+  display: block;
+  margin: 10px 0 5px 0;
+}
+
+.input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* ADMIN VIEW */
+.card-image {
+  position: relative;
 }
 
 .card-image__img {
@@ -35,31 +68,6 @@ body {
 }
 
 /*USER VIEW*/
-.container {
-  background: #f0f0f0;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 10px;
-}
-
-.label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.input {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-.button {
-  display: inline-block;
-}
 
 .peach-button {
   border-radius: 12px;
