@@ -50,8 +50,7 @@ function AdminView() {
 
 //Open detailed view
   const employeeDetail = () => {
-    employees.filter((employee) => setOpenDetail(employee.employeeId) )
-   
+    employees.filter((employee) => setOpenDetail(employee.employeeId) )  
   };
    
 
@@ -64,8 +63,8 @@ function AdminView() {
        <ul>
         <li onClick={() => setDepartment("Marketing")}>Marketing</li>
         <hr />
-            <li onClick={() => setDepartment("Automation")}>Automation</li>
-            <hr />
+        <li onClick={() => setDepartment("Automation")}>Automation</li>
+        <hr />
        <li onClick={() => setDepartment("IT")}>IT</li>
        <hr />
         <li onClick={() => setDepartment("Finance")}>Finance</li>

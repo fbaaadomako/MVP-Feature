@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import './App.css'
+import './List-Grid.css'
 import UserView from "./components/UserView";
 import AdminView from "./components/AdminView";
 import icon from "./assets/icon.png"
 import menu from "./assets/menu-burger.png"
+
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(true);
@@ -25,7 +27,7 @@ function App() {
       <div className="pl-2 dropdown">
         <button className="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <img src={menu} className="icon" /></button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <button className={`dropdown-item ${isAdmin}`}
                   onClick={() => handleChangeView(true)}>Employees</button>
           <button className={`dropdown-item  ${!isAdmin}`}
@@ -35,7 +37,7 @@ function App() {
         {/* Logo */}
         <div className="ml-auto">
           <a className="navbar-brand px-4 text-light font-weight-bold">
-            EZ<img src={icon} class="icon" />Form </a></div>
+            EZ<img src={icon} className="icon" />Form </a></div>
 </nav>
       </div>
       <div className="admin-view-container">
@@ -46,7 +48,7 @@ function App() {
             changeView={(isAdmin) => handleChangeView(isAdmin)} />
         )}
         </div> 
-    // </div>
+    </div>
   );
 };
 

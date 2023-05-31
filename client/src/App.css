@@ -36,6 +36,7 @@ body {
 .icon {
   height: 1em;
   margin: 0.2em;
+  cursor: pointer;
 }
 
 /* USER VIEW */
@@ -65,7 +66,7 @@ label {
   float: left;
   width: 250px;
   height: 100%;
-  padding: 90px 60px 60px 40px;
+  padding: 90px 40px 60px 40px;
 }
 
 .admin-view-container {
@@ -93,7 +94,6 @@ li:hover {
 .toggle-link {
   display: flex;
   justify-content: end;
-  /* float: right; */
   text-decoration: underline;
 }
 
@@ -127,88 +127,15 @@ input::placeholder {
   background-color: rgb(218, 218, 218);
 }
 
-.card-image {
-  position: relative;
-}
-
-.card-image__img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px 5px 0 0;
-}
-
-.card-image__src {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  padding: 5px;
-  background-color: white;
-  font-size: 12px;
-  font-family: sans-serif;
-  border-radius: 3px;
-}
-
-/*USER VIEW*/
-
-.peach-button {
-  border-radius: 12px;
-  background-color: #ffcba4; /* Peach color */
-  color: #000000; /* Black color for text */
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  position: relative;
-  transition: background-color 0.3s;
-}
-
-.peach-button::before {
-  content: "\2192"; /* Unicode arrow right symbol */
-  position: absolute;
-  right: 10px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.peach-button:hover {
-  background-color: #ffa87d; /* Lighter shade of peach on hover */
-}
-
-.peach-button:hover::before {
-  opacity: 1;
-}
-
-.title-section {
-  background-color: #f4f1ea; /* Quicksand color */
-  padding: 10px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title {
-  font-size: 24px;
-  margin: 0;
-  font-family: sans-serif;
-  font-weight: bold;
-}
-
 /* RESPONSIVE ELEMENTS */
 @media screen and (max-width: 800px) {
-  /* input[type="submit"] {
-    width: 100%;
-    margin-top: 0;
-  } */
   .dept-container {
     width: 220px;
   }
   .search-input {
     width: 100%;
   }
-  /* h2 {
-    font-size: 1em;
+  h2 {
+    font-size: 1.5em;
   }
-  .card p {
-    font-size: 0.8em;
-  } */
 }

@@ -300,8 +300,8 @@ function UserView({ addFormArray, changeView }) {
                   </div>
           </div>
         </div>
-        <hr className="mt-3" />
-          <button type="submit" className="btn btn-dark">Save</button>
+  
+          <button type="submit" className="btn btn-dark mt-3">Save</button>
             </div>
           </div>
       </form>
