@@ -10,7 +10,6 @@ function AdminView() {
   const [employees, setEmployees] = useState([]);
   const [department, setDepartment] = useState("");
   // const [detail, setDetail] = useState([])
-  // const [openDetail, setOpenDetail] = useState("");
   const [openDetail, setOpenDetail] = useState("");
 
 

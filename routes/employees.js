@@ -54,7 +54,6 @@ router.get("/employees", async (req, res, next) => {
   }
 });
 
-// GET: localhost:4000/api/employees/:id
 router.get("/employees/:id", async (req, res, next) => {
   let { id } = req.params;
   // console.log(req.params)
@@ -92,7 +91,6 @@ router.post("/employees", async (req, res, next) => {
     startDate,
     url,
   } = req.body;
-  // console.log(req.body)
   try {
     //insert new employee. Id will be auto incremented
     await db(
@@ -113,44 +111,38 @@ router.post("/employees", async (req, res, next) => {
 });
 
 // EDIT/UPDATE an employee
-router.put("employees/:id", function (req, res, next) {
-  console.log("Hello there");
-  res.send("Hello world again");
-  // let { id } = req.params.id;
-  // console.log("ID", req.params.id);
-  // const {
-  //   employeeId,
-  //   fullName,
-  //   address,
-  //   country,
-  //   passport,
-  //   emailAddress,
-  //   birthDate,
-  //   phoneNumber,
-  //   maritalStatus,
-  //   department,
-  //   epfNumber,
-  //   SOCSO,
-  //   startDate,
-  //   url,
-  // } = req.body;
-  // console.log("REQBODY", req.body);
-  // try {
-  // await db(
-  //   `UPDATE personal_info SET fullName='${fullName}', address='${address}', country='${country}', passport='${passport}', emailAddress='${emailAddress}', birthDate='${birthDate}', phoneNumber='${phoneNumber}', maritalStatus='${maritalStatus}' WHERE employeeId ='${id}';`
-  // );
-  // await db(
-  //   `UPDATE work_info SET department='${department}', epfNumber='${epfNumber}', socso='${SOCSO}', startDate='${startDate}', url='${url}') WHERE employeeId='${id}';`
-  // );
-  // let results = await db(
-  //   "SELECT p.employeeId, p.fullName, p.address, p.country, p.passport, p.emailAddress, p.birthDate, p.phoneNumber, p.maritalStatus, w.department, w.epfNumber, w.SOCSO, w.startDate, w.url FROM personal_info p JOIN work_info w ON p.employeeID = w.employeeId;"
-  // );
-  // res.send(results.data[0]);
-
-  // }
-  // catch (err) {
-  //   res.status(500).send({ error: err.message });
-  // }
+router.put("/employees/:id", async (req, res, next) => {
+  let { id } = req.params;
+  const {
+    employeeId,
+    fullName,
+    address,
+    country,
+    passport,
+    emailAddress,
+    birthDate,
+    phoneNumber,
+    maritalStatus,
+    department,
+    epfNumber,
+    SOCSO,
+    startDate,
+    url,
+  } = req.body;
+  try {
+    await db(
+      `UPDATE personal_info SET fullName='${fullName}', address='${address}', country='${country}', passport='${passport}', emailAddress='${emailAddress}', birthDate='${birthDate}', phoneNumber='${phoneNumber}', maritalStatus='${maritalStatus}' WHERE employeeId =${id};`
+    );
+    await db(
+      `UPDATE work_info SET department='${department}', epfNumber='${epfNumber}', socso='${SOCSO}', startDate='${startDate}', url='${url}' WHERE employeeId=${id};`
+    );
+    let results = await db(
+      "SELECT p.employeeId, p.fullName, p.address, p.country, p.passport, p.emailAddress, p.birthDate, p.phoneNumber, p.maritalStatus, w.department, w.epfNumber, w.SOCSO, w.startDate, w.url FROM personal_info p JOIN work_info w ON p.employeeID = w.employeeId;"
+    );
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
 });
 
 // DELETE an employee
