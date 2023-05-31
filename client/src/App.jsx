@@ -3,6 +3,7 @@ import './App.css'
 import './List-Grid.css'
 import UserView from "./components/UserView";
 import AdminView from "./components/AdminView";
+import EmployeeDetail from "./components/EmployeeDetail";
 import icon from "./assets/icon.png"
 import menu from "./assets/menu-burger.png"
 
@@ -18,6 +19,7 @@ function App() {
     setIsAdmin(isAdmin);
   };  
 
+
   return (
     <div>
       <div className="container position-relative">
@@ -31,7 +33,8 @@ function App() {
           <button className={`dropdown-item ${isAdmin}`}
                   onClick={() => handleChangeView(true)}>Employees</button>
           <button className={`dropdown-item  ${!isAdmin}`}
-                  onClick={() => handleChangeView(false)}>Add Employee</button>
+                onClick={() => handleChangeView(false)}>Add Employee</button>
+              
      </div>
         </div>
         {/* Logo */}

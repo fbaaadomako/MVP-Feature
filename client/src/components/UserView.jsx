@@ -126,23 +126,80 @@ function UserView({ addFormArray, changeView }) {
       .catch((error) => {
           console.log(error)
       });
-    // if
-    //   ({
-    //     fullName: "",
-    //     employeeId: "",
-    //     country: "",
-    //     phoneNumber: "",
-    //     birthDate: "",
-    //     emailAddress: "",
-    //     startDate: "",
-    //    department: "",
-    //   }) {
-    //   window.alert("Please enter all fields")
-    // } else {
     changeView(true)
-    // }
-
   };
+
+  const handleEdit = (event) => {
+    event.preventDefault();
+  
+    const { employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, SOCSO, startDate } = formData;
+  
+    const options = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        employeeId,
+        fullName,
+        address,
+        country,
+        passport,
+        emailAddress,
+        birthDate,
+        phoneNumber,
+        maritalStatus,
+        department,
+        epfNumber,
+        SOCSO,
+        startDate,
+        url: formData.url,
+      }),
+    };
+  
+    fetch("/api/employees", options)
+      .then((response) => {
+        if (response.status === 200) {
+          setEmployees([...employees, {
+            employeeId,
+            fullName,
+            address,
+            country,
+            passport,
+            emailAddress,
+            birthDate,
+            phoneNumber,
+            maritalStatus,
+            department,
+            epfNumber,
+            SOCSO,
+            startDate,
+            url: formData.url,
+          }]);
+          addFormArray([...employees, {
+            employeeId,
+            fullName,
+            address,
+            country,
+            passport,
+            emailAddress,
+            birthDate,
+            phoneNumber,
+            maritalStatus,
+            department,
+            epfNumber,
+            SOCSO,
+            startDate,
+            url: formData.url,
+          }])
+        
+        }
+      })
+      .catch((error) => {
+          console.log(error)
+      });
+  };
+
 
   return (
     <div>

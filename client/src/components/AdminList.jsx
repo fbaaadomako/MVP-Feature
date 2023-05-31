@@ -35,11 +35,17 @@ function AdminList({ employees, toggleView, deleteEmployee, employeeDetail, open
                     <p><h7>Country:</h7> {employee.country}</p>
                     
                     
-                <button className="position-absolute bottom-0 end-0 mb-2 mr-5" onClick={() => employeeDetail()}>Open {employee.employeeId}</button>
-                {openDetail ? (<EmployeeDetail employee={employee} />) : null}
+                    <button className="position-absolute bottom-0 end-0 mb-2 mr-5"
+                      onClick={() => employeeDetail(event, employee.employeeId)}>Open {employee.employeeId}</button>
+
+                    {(openDetail === employee.employeeId) && <EmployeeDetail employee={employee}/>}
+                    {/* {openDetail ? (<EmployeeDetail employee={employee} />) : null} */}
+                {/* <button className="position-absolute bottom-0 end-0 mb-2 mr-5" onClick={() => employeeDetail()}>Open {employee.employeeId}</button>
+                    {openDetail ? (<EmployeeDetail employee={employee} />) : null} */}
+                    
                     <img src={deleteimg} className="icon position-absolute bottom-0 end-0 m-2" onClick={() => deleteEmployee(employee.employeeId)} />
                     
-                   {/* </button> */}
+              
                          </div>
                 </div>
                 </div>

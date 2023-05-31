@@ -10,6 +10,7 @@ function AdminView() {
   const [employees, setEmployees] = useState([]);
   const [department, setDepartment] = useState("");
   // const [detail, setDetail] = useState([])
+  // const [openDetail, setOpenDetail] = useState("");
   const [openDetail, setOpenDetail] = useState("");
 
 
@@ -49,8 +50,19 @@ function AdminView() {
   }, [view, setView]);
 
 //Open detailed view
-  const employeeDetail = () => {
-    employees.filter((employee) => setOpenDetail(employee.employeeId) )  
+  // const employeeDetail = () => {
+  //   employees.filter((employee) => setOpenDetail(employee.employeeId) )
+  
+  // };
+
+  const employeeDetail = (event, id) => {
+    console.log(id)
+    // event.target
+    console.log(event.target)
+    // employees.filter((employee) =>
+    //   (employee.employeeId === id) ? 
+    //   setOpenDetail(true) : "cannot open")
+    setOpenDetail(id)
   };
    
 

@@ -36,9 +36,6 @@ h7 {
   background-color: rgb(252, 252, 252);
   margin: 10px;
   display: flex;
-  /* position: absolute; */
-  /* word-wrap: break-word; */
-  /* text-overflow: hidden; */
 }
 
 .card-image-l {
