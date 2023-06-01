@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 //declare UserView function that accepts a prop call "addFormArray"
 function UserView({ addFormArray, changeView }) {
-//intialize the formData state variable with an empty string for each field 
   const [formData, setFormData] = useState({
     fullName: "",
     employeeId: "",
@@ -19,12 +18,10 @@ function UserView({ addFormArray, changeView }) {
     SOCSO: "",
     url: "",
   });
-  //represents list of employees fetched from the server 
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     getEmployees();
-    //empty array to ensure the effect runs only once everytime it loads
   }, []);
 
   const getEmployees = async () => {
@@ -128,78 +125,6 @@ function UserView({ addFormArray, changeView }) {
       });
     changeView(true)
   };
-
-  const handleEdit = (event) => {
-    event.preventDefault();
-  
-    const { employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, SOCSO, startDate } = formData;
-  
-    const options = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        employeeId,
-        fullName,
-        address,
-        country,
-        passport,
-        emailAddress,
-        birthDate,
-        phoneNumber,
-        maritalStatus,
-        department,
-        epfNumber,
-        SOCSO,
-        startDate,
-        url: formData.url,
-      }),
-    };
-  
-    fetch("/api/employees", options)
-      .then((response) => {
-        if (response.status === 200) {
-          setEmployees([...employees, {
-            employeeId,
-            fullName,
-            address,
-            country,
-            passport,
-            emailAddress,
-            birthDate,
-            phoneNumber,
-            maritalStatus,
-            department,
-            epfNumber,
-            SOCSO,
-            startDate,
-            url: formData.url,
-          }]);
-          addFormArray([...employees, {
-            employeeId,
-            fullName,
-            address,
-            country,
-            passport,
-            emailAddress,
-            birthDate,
-            phoneNumber,
-            maritalStatus,
-            department,
-            epfNumber,
-            SOCSO,
-            startDate,
-            url: formData.url,
-          }])
-        
-        }
-      })
-      .catch((error) => {
-          console.log(error)
-      });
-  };
-
 
   return (
     <div>

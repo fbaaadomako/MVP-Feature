@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import AdminList from "./AdminList";
 import AdminGrid from "./AdminGrid";
 
@@ -12,8 +12,8 @@ function AdminView() {
   // const [detail, setDetail] = useState([])
   const [openDetail, setOpenDetail] = useState("");
 
-
-  useEffect(() => { //getting employees every time page is loaded
+  useEffect(() => {
+    //getting employees every time page is loaded
     getEmployees();
   }, []);
 
@@ -30,15 +30,15 @@ function AdminView() {
       console.log(error);
     }
   };
-  
+
   //Delete employee from listview
   const deleteEmployee = (id) => {
     fetch(`http://localhost:4000/api/employees/${id}`, {
       method: "DELETE",
     })
-      .then(response => response.json())
-      .then(employees => setEmployees(employees))
-      .catch(error => {
+      .then((response) => response.json())
+      .then((employees) => setEmployees(employees))
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -48,88 +48,82 @@ function AdminView() {
     setView(!view);
   }, [view, setView]);
 
-//Open detailed view
-  // const employeeDetail = () => {
-  //   employees.filter((employee) => setOpenDetail(employee.employeeId) )
-  
-  // };
-
+  //Open Detailed View
   const employeeDetail = (event, id) => {
-    console.log(id)
-    // event.target
-    console.log(event.target)
-    // employees.filter((employee) =>
-    //   (employee.employeeId === id) ? 
-    //   setOpenDetail(true) : "cannot open")
-   
-    // if
-      (setOpenDetail(id))
-    // {
-      // window.open(<EmployeeDetail />)
-    // }
+    setOpenDetail(id);
   };
 
+  //Close Detailed View
   const closeDetail = (event) => {
-    setOpenDetail(false)
-    console.log(event.target)
+    setOpenDetail(false);
+    console.log(event.target);
   };
-   
 
   return (
     <div>
       <div className="admin-view-container">
         <div className="dept-container">
-       
-        <h3>Departments</h3>
-       <ul>
-        <li onClick={() => setDepartment("Marketing")}>Marketing</li>
-        <hr />
-        <li onClick={() => setDepartment("Automation")}>Automation</li>
-        <hr />
-       <li onClick={() => setDepartment("IT")}>IT</li>
-       <hr />
-        <li onClick={() => setDepartment("Finance")}>Finance</li>
-        <hr />
-        <li  onClick={() => setDepartment("Investment")}>Investment</li>
-        <hr />
-        <li  onClick={() => setDepartment("Design")}>Design</li>
-          <hr />
-        <li  onClick={() => setDepartment("")} >All Departments</li >
-        </ul>
-         
-          </div>
-   
+          <h3>Departments</h3>
+          <ul>
+            <li onClick={() => setDepartment("Marketing")}>Marketing</li>
+            <hr />
+            <li onClick={() => setDepartment("Automation")}>Automation</li>
+            <hr />
+            <li onClick={() => setDepartment("IT")}>IT</li>
+            <hr />
+            <li onClick={() => setDepartment("Finance")}>Finance</li>
+            <hr />
+            <li onClick={() => setDepartment("Investment")}>Investment</li>
+            <hr />
+            <li onClick={() => setDepartment("Design")}>Design</li>
+            <hr />
+            <li onClick={() => setDepartment("")}>All Departments</li>
+          </ul>
+        </div>
+
         <div className="cards-container">
           <h2>Company Employees</h2>
           <p>Search by employee's name: </p>
-          <input className="search-input" placeholder="search here"  type="text" value={query}
-            onChange={(e) => setQuery(e.target.value)} />
-          
-          {view ?
-            
-            <AdminList employees={employees
-              .filter((employee) => employee.fullName.toLowerCase().includes(query))
-              .filter((employee) => employee.department.includes(department))}
+          <input
+            className="search-input"
+            placeholder="search here"
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+
+          {view ? (
+            <AdminList
+              employees={employees
+                .filter((employee) =>
+                  employee.fullName.toLowerCase().includes(query)
+                )
+                .filter((employee) => employee.department.includes(department))}
               deleteEmployee={deleteEmployee}
               employeeDetail={employeeDetail}
               openDetail={openDetail}
               toggleView={toggleView}
               closeDetail={closeDetail}
             />
-            :
-            <AdminGrid employees={employees
-              .filter((employee) => employee.fullName.toLowerCase().includes(query))
-              .filter((employee) => employee.department.includes(department))}
+          ) : (
+            <AdminGrid
+              employees={employees
+                .filter((employee) =>
+                  employee.fullName.toLowerCase().includes(query)
+                )
+                .filter((employee) => employee.department.includes(department))}
               deleteEmployee={deleteEmployee}
               employeeDetail={employeeDetail}
               toggleView={toggleView}
-            // openDetail={openDetail}
-            />} 
-          
-          </div></div></div>
+              // openDetail={openDetail}
+            />
+          )}
+        </div>
+      </div>
+    </div>
 
-      // </div>
-    );
-  }
+    // </div>
+  );
+}
 
 export default AdminView;

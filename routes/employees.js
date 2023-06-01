@@ -148,7 +148,7 @@ router.put("/employees/:id", async (req, res, next) => {
 // DELETE an employee
 //1. write syntax for DELETE FROM personal via mySQL and copy paste here
 //2. view data via postman DELETE: localhost:4000/api/employees/:id
-router.delete("/employees/", async function (req, res, next) {
+router.delete("/employees/:id", async function (req, res, next) {
   //let id = req.params.id
   const { id } = req.params;
   // console.log(req.params.id);
