@@ -61,7 +61,17 @@ function AdminView() {
     // employees.filter((employee) =>
     //   (employee.employeeId === id) ? 
     //   setOpenDetail(true) : "cannot open")
-    setOpenDetail(id)
+   
+    // if
+      (setOpenDetail(id))
+    // {
+      // window.open(<EmployeeDetail />)
+    // }
+  };
+
+  const closeDetail = (event) => {
+    setOpenDetail(false)
+    console.log(event.target)
   };
    
 
@@ -97,23 +107,25 @@ function AdminView() {
           
           {view ?
             
-        <AdminList employees={employees
-          .filter((employee) => employee.fullName.toLowerCase().includes(query))
-          .filter((employee) => employee.department.includes(department))}
-          deleteEmployee={deleteEmployee}
-          employeeDetail={employeeDetail}
+            <AdminList employees={employees
+              .filter((employee) => employee.fullName.toLowerCase().includes(query))
+              .filter((employee) => employee.department.includes(department))}
+              deleteEmployee={deleteEmployee}
+              employeeDetail={employeeDetail}
               openDetail={openDetail}
               toggleView={toggleView}
-        />
-        :
-        <AdminGrid employees={employees
-          .filter((employee) => employee.fullName.toLowerCase().includes(query))
-          .filter((employee) => employee.department.includes(department))}
-          deleteEmployee={deleteEmployee}
-            employeeDetail={employeeDetail}
-            toggleView={toggleView}
-          // openDetail={openDetail}
-              />}
+              closeDetail={closeDetail}
+            />
+            :
+            <AdminGrid employees={employees
+              .filter((employee) => employee.fullName.toLowerCase().includes(query))
+              .filter((employee) => employee.department.includes(department))}
+              deleteEmployee={deleteEmployee}
+              employeeDetail={employeeDetail}
+              toggleView={toggleView}
+            // openDetail={openDetail}
+            />} 
+          
           </div></div></div>
 
       // </div>

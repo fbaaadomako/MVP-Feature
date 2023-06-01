@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import './App.css'
 import './List-Grid.css'
+import './EmployeeDetail.css'
 import UserView from "./components/UserView";
 import AdminView from "./components/AdminView";
 import EmployeeDetail from "./components/EmployeeDetail";
 import icon from "./assets/icon.png"
 import menu from "./assets/menu-burger.png"
-
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(true);
@@ -19,6 +21,7 @@ function App() {
     setIsAdmin(isAdmin);
   };  
 
+  
 
   return (
     <div>
@@ -44,7 +47,15 @@ function App() {
 </nav>
       </div>
       <div className="admin-view-container">
-    
+
+      {/* <Router> */}
+      {/* <Route path='emp' element={<EmployeeDetail />} /> */}
+    {/* </Switch> */}
+          {/* </Router> */}
+ 
+
+
+  {/* <h1><Link to={'/emp'}> Employeedetails</Link></h1> */}
         {isAdmin ? (<AdminView />) :
           (<UserView
             addFormArray={(newForms) => handleAddForm(newForms)}

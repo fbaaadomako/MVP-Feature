@@ -2,19 +2,38 @@ import gridimg from "../assets/apps.png";
 import listimg from "../assets/table-list.png";
 import deleteimg from "../assets/delete.png";
 import EmployeeDetail from "./EmployeeDetail";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-function AdminList({ employees, toggleView, deleteEmployee, employeeDetail, openDetail}) {
-  // const [openDetail, setOpenDetail] = useState("")
+function AdminList({ employees, toggleView, deleteEmployee, employeeDetail, openDetail, closeDetail}) {
+  // const [detailView, setOpenDetail] = useState("")
   
 
   return (
     <div>  
+      {/* <Router>
+      
+          <Route path='/emp' element={<EmployeeDetail />} /> */}
+        {/* </Switch> */}
+    {/* </Router> */}
+    
+
+      {/* <h1><Link to={'/emp'}> Employeedetails</Link></h1> */}
+      {/* <EmployeeDetail /> */}
+    {/* <Switch> */}
+      {/* <BrowseRouter>
+        <Switch>
+        <Route path='/emp' element={<EmployeeDetail />} />
+        </Switch>
+      </BrowseRouter> */}
+
+      {/* <Link to='/emp'><h1>Emplod</h1></Link> */}
+
  
         <div className="toggle-link">
       <img className="toggle-icon" title="Change view" src={listimg}  />
      <img className="toggle-icon" title="Change view"  src={gridimg}   onClick={toggleView} />
        </div>
-        
           {employees 
             .map((employee) => {
             const formattedStartDate = new Date(employee.startDate).toLocaleDateString('en-US');
@@ -38,7 +57,10 @@ function AdminList({ employees, toggleView, deleteEmployee, employeeDetail, open
                     <button className="position-absolute bottom-0 end-0 mb-2 mr-5"
                       onClick={() => employeeDetail(event, employee.employeeId)}>Open {employee.employeeId}</button>
 
-                    {(openDetail === employee.employeeId) && <EmployeeDetail employee={employee}/>}
+                    {/* <EmployeeDetail /> */}
+{/* {(!openDetail) ? ""} */}
+                    {/* {(openDetail === employee.employeeId) ? window.open(<EmployeeDetail employee={employee} />) : null} */}
+                   
                     {/* {openDetail ? (<EmployeeDetail employee={employee} />) : null} */}
                 {/* <button className="position-absolute bottom-0 end-0 mb-2 mr-5" onClick={() => employeeDetail()}>Open {employee.employeeId}</button>
                     {openDetail ? (<EmployeeDetail employee={employee} />) : null} */}
@@ -50,8 +72,11 @@ function AdminList({ employees, toggleView, deleteEmployee, employeeDetail, open
                 </div>
                 </div>
             );
-          })}
-
+            })}
+      {/* {(openDetail === (employees.map((employee) => employee.employeeId))) && <EmployeeDetail employees={employees} />} */}
+       {employees.map((employee) => (openDetail === employee.employeeId) && (<EmployeeDetail employee={employee} closeDetail={closeDetail} />))}
+            {/* {(openDetail === employee.employeeId) && <EmployeeDetail employee={employee} />} */}
+    {/* <EmployeeDetail employee={employee}/> */}
     
     </div>
     
